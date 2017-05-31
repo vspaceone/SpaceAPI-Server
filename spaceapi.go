@@ -1,14 +1,15 @@
 package main
 
 type status struct {
-	API      string `json:"api"`
-	Space    string `json:"space"`
-	Logo     string `json:"logo"`
-	URL      string `json:"url"`
-	location `json:"location"`
-	contact  `json:"contact"`
-	state    `json:"state"`
-	sensors  `json:"sensors"`
+	API                 string `json:"api"`
+	Space               string `json:"space"`
+	Logo                string `json:"logo"`
+	URL                 string `json:"url"`
+	location            `json:"location"`
+	contact             `json:"contact"`
+	IssueReportChannels []string `json:"issue_report_channels"`
+	state               `json:"state"`
+	sensors             `json:"sensors"`
 }
 
 type location struct {
@@ -29,19 +30,15 @@ type state struct {
 }
 
 type sensors struct {
-	Temperature temperatureArr `json:"temperature"`
-	Humidity    humidityArr    `json:"humidity"`
+	Temperature []temperature `json:"temperature"`
+	Humidity    []humidity    `json:"humidity"`
 }
-
-type temperatureArr []temperature
 
 type temperature struct {
 	Value    float32 `json:"value"`
 	Unit     string  `json:"unit"`
 	Location string  `json:"location"`
 }
-
-type humidityArr []temperature
 
 type humidity struct {
 	Value    float32 `json:"value"`
