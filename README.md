@@ -22,3 +22,4 @@ This server can return a valid SpaceAPI-string in version 13 as specified
 *  Static override of values (for example to set space details like name, location, url etc.)
 *  Endpoints to get information that is not present in the SpaceAPI string (sensor or state changes over time etc.)
 *  Support for the whole SpaceAPI (with all specified fields) includeing modification
+*  Support for HTTPS (use with reverse proxies for now)
