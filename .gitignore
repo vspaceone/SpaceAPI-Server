@@ -18,3 +18,5 @@ config.json
 token
 
 *.db
+
+SpaceAPI-Server
