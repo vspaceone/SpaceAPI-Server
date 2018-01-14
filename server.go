@@ -5,8 +5,11 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 )
+
+var token = ""
 
 func serve(port int16) {
 
@@ -51,6 +54,11 @@ func spaceapiEp(w http.ResponseWriter, r *http.Request) {
 		spaceapi(w, r)
 	} else if r.Method == http.MethodPost {
 		// Accept changes and write them to a database
+
+		if strings.Compare(r.Header.Get("X-Auth-Token"), token) != 0 {
+			w.WriteHeader(401)
+			return
+		}
 
 		buf := bbuf(r.Body)
 

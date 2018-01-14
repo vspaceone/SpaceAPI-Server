@@ -9,7 +9,6 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var token = ""
 var config configuration
 var db *gorm.DB
 
