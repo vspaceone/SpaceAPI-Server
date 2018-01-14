@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
+	"io/ioutil"
+	"log"
 )
 
 type status struct {
@@ -54,6 +56,35 @@ type humidity struct {
 	Changed  int64   `json:"-"`
 }
 
+var override status
+
+func (st *status) set(st2 status) {
+	st.Space = st2.Space
+	st.Logo = st2.Logo
+	st.URL = st2.URL
+	st.location = st2.location
+	st.contact = st2.contact
+	st.IssueReportChannels = st2.IssueReportChannels
+}
+
+func loadOverride() {
+	var st status
+
+	dat, err := ioutil.ReadFile("override.json")
+	if err != nil {
+		log.Fatal("Couldn't read override file")
+		return
+	}
+
+	err = json.Unmarshal(dat, &st)
+	if err != nil {
+		log.Fatal("Couldn't unmarshal override file")
+		return
+	}
+
+	override = st
+}
+
 func bbuf(r io.ReadCloser) []byte {
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(r)
@@ -61,34 +92,36 @@ func bbuf(r io.ReadCloser) []byte {
 }
 
 func createAPIString(st state, temps []temperature, hums []humidity) string {
+	loadOverride()
+
 	s := status{
 		API:   "0.13",
-		Space: "vspace.one",
-		Logo:  "https://vspace.one/pic/logo_vspaceone.svg",
-		URL:   "https://vspace.one",
+		Space: "",
+		Logo:  "",
+		URL:   "",
 		location: location{
-			Address: "Wilhelm-Binder-Str. 19, 78048 VS-Villingen, Germany",
-			Lat:     48.065003,
-			Lon:     8.456495,
+			Address: "",
+			Lat:     0,
+			Lon:     0,
 		},
 		contact: contact{
-			Phone:   "+49 221 596196638",
-			Email:   "info@vspace.one",
-			Twitter: "@vspace.one",
+			Phone:   "",
+			Email:   "",
+			Twitter: "",
 		},
 		state: state{
 			Open:       st.Open,
 			LastChange: st.LastChange,
 		},
-		IssueReportChannels: []string{
-			"email",
-			"twitter",
-		},
+		IssueReportChannels: []string{},
 		sensors: sensors{
 			Temperature: temps,
 			Humidity:    hums,
 		},
 	}
+
+	s.set(override)
+
 	b, _ := json.MarshalIndent(s, "", "    ")
 	return string(b)
 }

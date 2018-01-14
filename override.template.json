@@ -1,0 +1,20 @@
+{
+    "API":   "0.13",
+    "Space": "vspace.one",
+    "Logo":  "https://vspace.one/pic/logo_vspaceone.svg",
+    "URL":   "https://vspace.one",
+    "location": {
+        "Address": "Wilhelm-Binder-Str. 19, 78048 VS-Villingen, Germany",
+        "Lat":     48.065003,
+        "Lon":     8.456495
+    },
+    "contact": {
+        "Phone":   "+49 221 596196638",
+        "Email":   "info@vspace.one",
+        "Twitter": "@vspace.one"
+    },
+    "IssueReportChannels": [
+        "email",
+        "twitter"
+    ]
+}
