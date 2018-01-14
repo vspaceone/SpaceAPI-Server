@@ -5,7 +5,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
-func newDatabase(dbtype, dbconnection string) *gorm.DB {
+func newDatabase(dbtype, dbconnection string, debug bool) *gorm.DB {
 	//db, err := gorm.Open("sqlite3", "test.db")
 	db, err := gorm.Open(dbtype, dbconnection)
 
@@ -15,7 +15,7 @@ func newDatabase(dbtype, dbconnection string) *gorm.DB {
 
 	// Migrate if something was changed
 	db.AutoMigrate(&state{}, &temperature{}, &humidity{})
-	db.LogMode(true)
+	db.LogMode(debug)
 
 	return db
 }

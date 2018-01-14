@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -15,6 +16,15 @@ func serve(port int16) {
 	http.HandleFunc("/spaceapi.json", spaceapi)
 	http.HandleFunc("/spaceapi", spaceapiEp)
 	log.Fatal(http.ListenAndServe(":"+fmt.Sprintf("%d", port), nil))
+}
+
+func loadToken() {
+	dat, err := ioutil.ReadFile("token")
+	if err != nil {
+		panic("Couldn't read token file. You can generate a new one with \"SpaceAPI-Server create-token\"\n" + err.Error())
+	}
+	token = string(dat)
+	fmt.Println("Token:\n" + string(dat))
 }
 
 func spaceapi(w http.ResponseWriter, r *http.Request) {

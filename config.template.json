@@ -1,5 +1,6 @@
 {
     "db":"sqlite3",
     "dbconnection":"lite.db",
-    "port":8080
+    "port":8080,
+    "debug":false
 }

@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io/ioutil"
 )
 
@@ -11,6 +10,7 @@ type configuration struct {
 	Db           string `json:"db"`
 	DbConnection string `json:"dbconnection"`
 	Port         int16  `json:"port"`
+	Debug        bool   `json:"debug"`
 }
 
 func getConfiguration() configuration {
@@ -26,7 +26,6 @@ func loadConfiguration() (configuration, error) {
 	if err != nil {
 		return config, errors.New("Couldn't read configuration file")
 	}
-	fmt.Println(string(dat))
 
 	err = json.Unmarshal(dat, &config)
 	if err != nil {

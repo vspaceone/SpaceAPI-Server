@@ -25,18 +25,9 @@ func main() {
 		strings.Compare("serve", os.Args[1]) == 0 {
 
 		config = getConfiguration()
-		db = newDatabase(config.Db, config.DbConnection)
+		db = newDatabase(config.Db, config.DbConnection, config.Debug)
 		defer db.Close()
 
 		serve(config.Port)
 	}
-}
-
-func loadToken() {
-	dat, err := ioutil.ReadFile("token")
-	if err != nil {
-		panic("Couldn't read token file. You can generate a new one with \"SpaceAPI-Server create-token\"\n" + err.Error())
-	}
-	token = string(dat)
-	fmt.Println("Token:\n" + string(dat))
 }
