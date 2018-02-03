@@ -26,9 +26,7 @@ This server can return a valid SpaceAPI-string in version 13 as specified
 *  Support for HTTPS (use with reverse proxies for now)
 
 ## Running
-For now no docker registry is provided, so the container needs to be built first.
 
-* `docker build -t sapi .`
 * Create a config and an override file in /srv/sapi like in this example (with your values)
 
 config.json
@@ -65,5 +63,5 @@ override.json
 }
 ```
 
-* `docker run --name sapi -v /srv/sapi/:/go/src/github.com/vspaceone/SpaceAPI-Server/data sapi`
+* `docker run --name spaceapi-server -v /srv/sapi/:/go/src/github.com/vspaceone/SpaceAPI-Server/data vspaceone/spaceapi-server`
 * Token and database files should be created automagically
