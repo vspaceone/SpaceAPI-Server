@@ -16,10 +16,7 @@ func main() {
 	if len(os.Args) <= 1 {
 		fmt.Println("Wrong input.")
 	} else if strings.Compare("create-token", os.Args[1]) == 0 {
-		token, _ := GenerateRandomString(64)
-		fmt.Println("Generated token: " + token)
-		ioutil.WriteFile("data/token", []byte(token), 0622)
-
+		generateToken()
 	} else if len(os.Args) == 2 &&
 		strings.Compare("serve", os.Args[1]) == 0 {
 
@@ -29,4 +26,10 @@ func main() {
 
 		serve(config.Port)
 	}
+}
+
+func generateToken() {
+	token, _ := GenerateRandomString(64)
+	fmt.Println("Generated token: " + token)
+	ioutil.WriteFile("data/token", []byte(token), 0622)
 }

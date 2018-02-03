@@ -24,7 +24,8 @@ func serve(port int16) {
 func loadToken() {
 	dat, err := ioutil.ReadFile("data/token")
 	if err != nil {
-		panic("Couldn't read token file. You can generate a new one with \"SpaceAPI-Server create-token\"\n" + err.Error())
+		log.Println("Couldn't read token file. Creating one under data/token")
+		generateToken()
 	}
 	token = string(dat)
 	fmt.Println("Token:\n" + string(dat))
