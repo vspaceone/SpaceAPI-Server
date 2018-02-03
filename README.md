@@ -22,7 +22,7 @@ This server can return a valid SpaceAPI-string in version 13 as specified
 ### Planned
 
 *  Endpoints to get information that is not present in the SpaceAPI string (sensor or state changes over time etc.)
-*  Support for the whole SpaceAPI (with all specified fields) includeing modification
+*  Support for the whole SpaceAPI (with all specified fields) including modification
 *  Support for HTTPS (use with reverse proxies for now)
 
 ## Running
@@ -63,5 +63,5 @@ override.json
 }
 ```
 
-* `docker run --name spaceapi-server -v /srv/sapi/:/go/src/github.com/vspaceone/SpaceAPI-Server/data vspaceone/spaceapi-server`
+* `docker run --name spaceapi-server -v /srv/spaceapi-server/:/go/src/github.com/vspaceone/SpaceAPI-Server/data vspaceone/spaceapi-server`
 * Token and database files should be created automagically
