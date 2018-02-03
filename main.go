@@ -18,7 +18,7 @@ func main() {
 	} else if strings.Compare("create-token", os.Args[1]) == 0 {
 		token, _ := GenerateRandomString(64)
 		fmt.Println("Generated token: " + token)
-		ioutil.WriteFile("token", []byte(token), 0622)
+		ioutil.WriteFile("data/token", []byte(token), 0622)
 
 	} else if len(os.Args) == 2 &&
 		strings.Compare("serve", os.Args[1]) == 0 {

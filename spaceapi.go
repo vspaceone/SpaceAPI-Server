@@ -70,7 +70,7 @@ func (st *status) set(st2 status) {
 func loadOverride() {
 	var st status
 
-	dat, err := ioutil.ReadFile("override.json")
+	dat, err := ioutil.ReadFile("data/override.json")
 	if err != nil {
 		log.Fatal("Couldn't read override file")
 		return

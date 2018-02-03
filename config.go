@@ -22,7 +22,7 @@ func getConfiguration() configuration {
 func loadConfiguration() (configuration, error) {
 	var config configuration
 
-	dat, err := ioutil.ReadFile("config.json")
+	dat, err := ioutil.ReadFile("data/config.json")
 	if err != nil {
 		return config, errors.New("Couldn't read configuration file")
 	}

@@ -22,7 +22,7 @@ func serve(port int16) {
 }
 
 func loadToken() {
-	dat, err := ioutil.ReadFile("token")
+	dat, err := ioutil.ReadFile("data/token")
 	if err != nil {
 		panic("Couldn't read token file. You can generate a new one with \"SpaceAPI-Server create-token\"\n" + err.Error())
 	}
