@@ -18,12 +18,14 @@ This server can return a valid SpaceAPI-string in version 13 as specified
 *  Simple token authentication of modification-requests
 *  Static override of some values (for example to set space details like name, location, url etc.)
 *  Dockerfile
+*  Endpoints to get information that is not present in the SpaceAPI string (sensor data for temperature and humidity can be queried)
 
 ### Planned
 
-*  Endpoints to get information that is not present in the SpaceAPI string (sensor or state changes over time etc.)
+
 *  Support for the whole SpaceAPI (with all specified fields) including modification
 *  Support for HTTPS (use with reverse proxies for now)
+*  API-Documentation
 
 ## Running
 

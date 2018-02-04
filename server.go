@@ -18,6 +18,7 @@ func serve(port int16) {
 
 	http.HandleFunc("/spaceapi.json", spaceapi)
 	http.HandleFunc("/spaceapi", spaceapiEp)
+	http.HandleFunc("/spaceapi/sensors", sensorsEp)
 	log.Fatal(http.ListenAndServe(":"+fmt.Sprintf("%d", port), nil))
 }
 
@@ -86,4 +87,15 @@ func spaceapiEp(w http.ResponseWriter, r *http.Request) {
 		}
 
 	}
+}
+
+func sensorsEp(w http.ResponseWriter, r *http.Request) {
+	// Only Post method allowed
+	if r.Method != http.MethodPost {
+		log.Println("not POST")
+		w.WriteHeader(404)
+		return
+	}
+	buf := bbuf(r.Body)
+	fmt.Fprint(w, createSensorsResponse(buf))
 }
