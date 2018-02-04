@@ -67,6 +67,25 @@ func createSensorsResponse(buf []byte) string {
 			body.Location, filter).
 			Order("changed DESC")
 		return marshalResponse(hum)
+	case "all":
+		var temp []temperature
+		db.Find(&temp, "location = ? AND changed > ? "+
+			"AND changed IN( "+
+			"SELECT MIN(t2.changed) FROM temperatures t2 "+
+			"WHERE location = ? "+
+			"GROUP BY strftime(?,t2.changed, 'unixepoch') )", body.Location, body.Since,
+			body.Location, filter).
+			Order("changed DESC")
+
+		var hum []humidity
+		db.Find(&hum, "location = ? AND changed > ? "+
+			"AND changed IN( "+
+			"SELECT MIN(t2.changed) FROM humidities t2 "+
+			"WHERE location = ? "+
+			"GROUP BY strftime(?,t2.changed, 'unixepoch') )", body.Location, body.Since,
+			body.Location, filter).
+			Order("changed DESC")
+		return "{\"temperature\":" + marshalResponse(hum) + ",\"humidity\":" + marshalResponse(temp) + "}"
 	}
 
 	return "[]"
