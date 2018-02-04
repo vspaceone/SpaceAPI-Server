@@ -27,6 +27,11 @@ func loadToken() {
 	if err != nil {
 		log.Println("Couldn't read token file. Creating one under data/token")
 		generateToken()
+		dat, err = ioutil.ReadFile("data/token")
+		if err != nil {
+			log.Fatalln("Token creation failed.")
+			panic("Exiting")
+		}
 	}
 	token = string(dat)
 	fmt.Println("Token:\n" + string(dat))
