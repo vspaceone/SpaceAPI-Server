@@ -38,6 +38,10 @@ func loadToken() {
 }
 
 func spaceapi(w http.ResponseWriter, r *http.Request) {
+
+	// Allow access from all locations
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	var state state
 	var temps []temperature
 	var hums []humidity
