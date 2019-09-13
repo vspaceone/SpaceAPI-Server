@@ -1,10 +1,6 @@
 package main
 
-import (
-	"encoding/json"
-)
-
-type data struct {
+/*type data struct {
 	Request  string `json:"request"`
 	Location string `json:"location"`
 	Filter   string `json:"filter"`
@@ -90,3 +86,4 @@ func createSensorsResponse(buf []byte) string {
 
 	return "[]"
 }
+*/

@@ -14,7 +14,7 @@ func newDatabase(dbtype, dbconnection string, debug bool) *gorm.DB {
 	}
 
 	// Migrate if something was changed
-	db.AutoMigrate(&state{}, &temperature{}, &humidity{})
+	db.AutoMigrate(&dbState{}, &dbTemperature{}, &dbHumidity{})
 	db.LogMode(debug)
 
 	return db

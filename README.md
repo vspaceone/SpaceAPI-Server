@@ -18,10 +18,8 @@ This server can return a valid SpaceAPI-string in version 13 as specified
 *  Simple token authentication of modification-requests
 *  Static override of some values (for example to set space details like name, location, url etc.)
 *  Dockerfile
-*  Endpoints to get information that is not present in the SpaceAPI string (sensor data for temperature and humidity can be queried)
 
 ### Planned
-
 
 *  Support for the whole SpaceAPI (with all specified fields) including modification
 *  Support for HTTPS (use with reverse proxies for now)
@@ -130,21 +128,6 @@ Examples for POST payload:
 
 ### Getting past sensor data
 
-*POST on /spaceapi/sensors*
-
-With this endpoint it is possible to access past sensor data (e.g. for sensor statistics). Any received sensor data (through the method described above) is saved to a database alongside with a timestamp.
-
-Examples for POST payload:
-```
-{
-    "request":"temperature",
-    "location":"Maschinenraum",
-    "filter":"day",
-    "since":0
-}
-```
-
-**request:** The type of sensor data to request (temperature, humidity, all)  
-**location:** The location as specified by SpaceAPI  
-**filter:** Filters the requested sensor data. It is possible to only return one sensor data entry for each past minute, hour, day, month or year.  
-**since:** Only sensor data entries newer than the specified timestamp will be returned.
+Not possible anymore. 
+This server only saves the current state in its database and presents it as a SpaceAPI.
+Other tools can be used for monitoring, logging and analyzing changes to the API.
