@@ -46,14 +46,12 @@ type temperature struct {
 	Value    float32 `json:"value"`
 	Unit     string  `json:"unit"`
 	Location string  `json:"location"`
-	Changed  int64   `json:"ext_changed"`
 }
 
 type humidity struct {
 	Value    float32 `json:"value"`
 	Unit     string  `json:"unit"`
 	Location string  `json:"location"`
-	Changed  int64   `json:"ext_changed"`
 }
 
 var override status

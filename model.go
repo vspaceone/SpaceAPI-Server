@@ -10,12 +10,10 @@ type dbTemperature struct {
 	Value    float32
 	Unit     string
 	Location string `gorm:"PRIMARY_KEY"`
-	Changed  int64
 }
 
 type dbHumidity struct {
 	Value    float32
 	Unit     string
 	Location string `gorm:"PRIMARY_KEY"`
-	Changed  int64
 }
